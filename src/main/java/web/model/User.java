@@ -1,20 +1,20 @@
 package web.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "users", schema = "user")
+@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(generator = "increment")
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String name;
     @Column(name = "lastname")
     private String lastName;
 
     public User() {
-
     }
 
     public User(String name, String lastName) {
@@ -53,5 +53,18 @@ public class User {
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id && Objects.equals(name, user.name) && Objects.equals(lastName, user.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, lastName);
     }
 }
