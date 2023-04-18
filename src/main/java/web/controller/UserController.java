@@ -1,19 +1,20 @@
 package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
-import web.service.UserService;
+import web.service.Service;
 
 @Controller
 public class UserController {
 
-    private UserService service;
+    private Service service;
 
     @Autowired
-    public void setUserService(UserService service) {
+    public void setUserService(Service service) {
         this.service = service;
     }
 
@@ -42,7 +43,7 @@ public class UserController {
 
     @GetMapping(value = "/update/{id}")
     public String updateUser(ModelMap model, @PathVariable(value = "id") int id) {
-        model.addAttribute("user", service.get().get(id));
+        model.addAttribute("user", service.get(id));
         return "updateUser";
     }
 

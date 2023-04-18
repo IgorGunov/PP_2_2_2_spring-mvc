@@ -7,6 +7,7 @@ import java.util.List;
 public interface Service {
 
     public List<User> get();
+    public User get(int id);
 
     public void create(User user);
 
