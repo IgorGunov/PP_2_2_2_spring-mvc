@@ -18,13 +18,13 @@ public class UserServiceImp implements UserService {
         this.dao = dao;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public List<User> get() {
         return dao.get();
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     @Override
     public User get(int id) {
         return dao.get(id);
