@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/newUser")
-    public String addUser(@ModelAttribute("user") User user) {
+    public String getWebpageAddUser(@ModelAttribute("user") User user) {
         return "newUser";
     }
 
@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/update/{id}")
-    public String editUser(ModelMap model, @PathVariable(value = "id") int id) {
+    public String getWebpageEditUser(ModelMap model, @PathVariable(value = "id") int id) {
         model.addAttribute("user", service.get(id));
         return "updateUser";
     }
